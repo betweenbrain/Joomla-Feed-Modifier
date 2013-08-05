@@ -13,27 +13,36 @@
 	<description>PLG_FEED_MODIFIER_DESC</description>
 	<files>
 		<filename plugin="feedmodifier">feedmodifier.php</filename>
+		<folder>elements</folder>
 	</files>
 
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.plg_system_feedmodifier.ini</language>
 	</languages>
 
-	<params>
+	<params addpath="/plugins/system/elements">
 		<param name="author"
 		       type="text"
 		       default=""
 		       label="PLG_FEED_MODIFIER_AUTHOR_LABEL"
 		       description="PLG_FEED_MODIFIER_AUTHOR_DESC"/>
+		<param name="exclusions"
+		       type="menuitems"
+		       label="PLG_FEED_MODIFIER_EXCLUSIONS_LABEL"
+		       description="PLG_FEED_MODIFIER_EXCLUSIONS_DESC"/>
 	</params>
 	<config>
-		<fields name="params">
+		<fields name="params" addpath="/plugins/system/feedmodifier/elements">
 			<fieldset name="basic">
 				<field name="author"
 				       type="text"
 				       default=""
 				       label="PLG_FEED_MODIFIER_AUTHOR_LABEL"
 				       description="PLG_FEED_MODIFIER_AUTHOR_DESC"/>
+				<field name="exclusions"
+				       type="menuitems"
+				       label="PLG_FEED_MODIFIER_EXCLUSIONS_LABEL"
+				       description="PLG_FEED_MODIFIER_EXCLUSIONS_DESC"/>
 			</fieldset>
 		</fields>
 	</config>

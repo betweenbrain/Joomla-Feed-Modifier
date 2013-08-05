@@ -22,20 +22,37 @@ class plgSystemFeedmodifier extends JPlugin {
 
 	function onAfterRender() {
 
-		if ($this->app->isAdmin() || $this->format != "feed") {
-			return TRUE;
+		if ($this->checkContext() === TRUE) {
+
+			$author = htmlspecialchars($this->params->get('author'));
+			$buffer = JResponse::getBody();
+
+			$pattern     = '/<author>[^>]*<\/author>/i';
+			$replacement = $author ? '<author>' . $author . '</author>' : '';
+			$buffer      = preg_replace($pattern, $replacement, $buffer);
+			preg_match($pattern, $buffer, $matches);
+
+			JResponse::setBody($buffer);
 		}
 
-		$author = htmlspecialchars($this->params->get('author'));
-		$buffer            = JResponse::getBody();
-
-		$pattern     = '/<author>[^>]*<\/author>/i';
-		$replacement = $author ? '<author>' . $author . '</author>' : '';
-		$buffer      = preg_replace($pattern, $replacement, $buffer);
-		preg_match($pattern, $buffer, $matches);
-
-		JResponse::setBody($buffer);
-
 		return TRUE;
+	}
+
+	function checkContext() {
+
+		if (!$this->app->isAdmin() && $this->format == "feed") {
+			$item       = $this->app->getMenu()->getActive()->id;
+			$exclusions = $this->params->get('exclusions');
+
+			if (!is_array($exclusions)) {
+				$exclusions = explode(' ', $exclusions);
+			}
+
+			if (!in_array($item, $exclusions)) {
+				return TRUE;
+			}
+		}
+
+		return FALSE;
 	}
 }
