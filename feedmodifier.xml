@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="plugin"
+         group="system"
+         version="2.5"
+         method="upgrade">
+	<name>System - Feed Modifier</name>
+	<creationDate>August 05, 2013</creationDate>
+	<author>Matt Thomas</author>
+	<authorUrl>http://betweenbrain.com</authorUrl>
+	<copyright>Copyright (C) 2013 Matt Thomas. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<version>1.0</version>
+	<description>PLG_FEED_MODIFIER_DESC</description>
+	<files>
+		<filename plugin="feedmodifier">feedmodifier.php</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_system_feedmodifier.ini</language>
+	</languages>
+
+	<params>
+		<param name="author"
+		       type="text"
+		       default=""
+		       label="PLG_FEED_MODIFIER_AUTHOR_LABEL"
+		       description="PLG_FEED_MODIFIER_AUTHOR_DESC"/>
+	</params>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="author"
+				       type="text"
+				       default=""
+				       label="PLG_FEED_MODIFIER_AUTHOR_LABEL"
+				       description="PLG_FEED_MODIFIER_AUTHOR_DESC"/>
+			</fieldset>
+		</fields>
+	</config>
+
+</install>
